@@ -4,7 +4,9 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) that
 
 ## 📌 Requirements
 
-- Kubernetes 1.20+
+- Access to Bastion node
+- OpenShift 4.14
+- HPE iLO 6
 - Helm 3+
 - Proper permissions to create `DaemonSets`, `ServiceAccounts`, `ClusterRoleBindings`, and `SecurityContextConstraints` (SCC in OpenShift)
 
