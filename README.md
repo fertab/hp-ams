@@ -1,6 +1,6 @@
 # hp-ams Helm Chart
 
-This is a Helm Chart for deploying `hp-ams` in a Openshift cluster (4.14) that is running over HO iLO 6 baremetal infrastructure using a `DaemonSet`. This chart includes optional configurations for RBAC, SecurityContextConstraints (SCC), and other customizations.
+This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) that is running over HO iLO 6 baremetal infrastructure using a `DaemonSet`. This chart includes optional configurations for RBAC, SecurityContextConstraints (SCC), and other customizations.
 
 ## 📌 Requirements
 
