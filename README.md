@@ -12,19 +12,15 @@ This is a Helm Chart for deploying `hp-ams` in a Kubernetes cluster using a `Dae
 
 ## 🚀 Installation
 
-### **1️⃣ Add the repository (optional)**
-If the chart is available in a Helm repository, you can add it with:
+### **1️⃣ Download the Chart from Corporate GitHub**
+Clone the repository where the Helm Chart is hosted:
 ```sh
-helm repo add myrepo https://example.com/helm-charts
-helm repo update
+git clone https://mxcnnfv3clasysmgit.mx.att.com/nfv-devops-cloud/path-to-repo/hp-ams.git
+cd hp-ams
 ```
 
 ### **2️⃣ Install the Chart**
-If the chart is in a Helm repository:
-```sh
-helm install hp-ams myrepo/hp-ams
-```
-If you have it locally:
+Once inside the `hp-ams` directory, install the chart with:
 ```sh
 helm install hp-ams .
 ```
@@ -49,6 +45,8 @@ image:
   repository: "my-repo/image"
   tag: "latest"
 
+# Optional: If you want to deploy to specific nodes, use nodeSelector
+# To deploy on all nodes, remove this section or set it to an empty value
 nodeSelector:
   kubernetes.io/hostname: "node-1"
 
@@ -59,6 +57,11 @@ rbac:
 ### **Install with custom values**
 ```sh
 helm install hp-ams . --set rbac.enabled=false
+```
+
+If you want to deploy the `DaemonSet` across all nodes in the cluster, remove the `nodeSelector` section from `values.yaml` or set it to `{}`:
+```sh
+helm install hp-ams . --set nodeSelector={}
 ```
 
 ---
@@ -102,5 +105,5 @@ helm install hp-ams . --dry-run --debug
 
 ---
 
-🚀 **Ready to deploy `hp-ams` efficiently and flexibly in Kubernetes!**
+🚀 **Ready to deploy `hp-ams`**
 
