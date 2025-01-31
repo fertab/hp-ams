@@ -32,4 +32,4 @@ spec:
       volumes:
         - name: host-root
           hostPath:
-            path: {{ .Values.daemonSet.volumePath }}
+            path: "{{ .Values.daemonSet.volumePath }}"
