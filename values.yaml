@@ -15,5 +15,8 @@ daemonSet:
 rbac:
   enabled: true
 
+autoscaling:
+  enabled: false
+
 nodeSelector:
   kubernetes.io/hostname: "wrk04.mxntmty03nfv1r03ocp01.mx.att.com"
