@@ -15,7 +15,7 @@ spec:
         app: hp-ams
     spec:
       nodeSelector:
-        kubernetes.io/hostname: {{ .Values.nodeSelector.kubernetes.io/hostname }}
+        kubernetes.io/hostname: "{{ index .Values.nodeSelector "kubernetes.io/hostname" }}"
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: hp-ams
