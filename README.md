@@ -75,15 +75,15 @@ helm uninstall hp-ams
 ```
 If some resources are not removed (such as ServiceAccounts, RBAC, or SCC), you can delete them manually:
 ```sh
-kubectl delete serviceaccount hp-ams-sa -n default
-kubectl delete clusterrolebinding hp-ams-cluster-admin
-kubectl delete rolebinding bind-hostpath -n default
-kubectl delete scc allow-hostpath
+oc delete serviceaccount hp-ams-sa -n default
+oc delete clusterrolebinding hp-ams-cluster-admin
+oc delete rolebinding bind-hostpath -n default
+oc delete scc allow-hostpath
 ```
 
 To delete all related resources:
 ```sh
-kubectl delete all --selector=app=hp-ams -n default
+oc delete all --selector=app=hp-ams -n default
 ```
 
 ---
@@ -102,8 +102,6 @@ helm install hp-ams . --dry-run --debug
 
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
-- [Kubernetes API Reference](https://kubernetes.io/docs/reference/)
-- [OpenShift Security Context Constraints (SCC)](https://docs.openshift.com/container-platform/4.14/authentication/managing-security-context-constraints.html)
 
 ---
 
