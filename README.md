@@ -103,7 +103,7 @@ helm install hp-ams . --dry-run --debug
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
 - [Kubernetes API Reference](https://kubernetes.io/docs/reference/)
-- [OpenShift Security Context Constraints (SCC)](https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
+- [OpenShift Security Context Constraints (SCC)](https://docs.openshift.com/container-platform/4.14/authentication/managing-security-context-constraints.html)
 
 ---
 
