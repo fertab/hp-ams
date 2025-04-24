@@ -1,0 +1,6 @@
+apiVersion: v2
+name: hp-ams
+description: Helm Chart para desplegar el HP AMS DaemonSet en Kubernetes/OpenShift
+type: application
+version: 1.0.0
+appVersion: "3.8.0-1869.3"

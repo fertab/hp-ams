@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ .Values.daemonSet.name }}
+  namespace: {{ .Values.daemonSet.namespace }}
+  labels:
+    app: hp-ams
+spec:
+  selector:
+    matchLabels:
+      app: hp-ams
+  template:
+    metadata:
+      labels:
+        app: hp-ams
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: "{{ index .Values.nodeSelector "kubernetes.io/hostname" }}"
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: hp-ams
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          securityContext:
+            privileged: {{ .Values.daemonSet.privileged }}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/sbin/amsd"]
+          volumeMounts:
+            - name: host-root
+              mountPath: /host
+      volumes:
+        - name: host-root
+          hostPath:
+            path: "{{ .Values.daemonSet.volumePath }}"

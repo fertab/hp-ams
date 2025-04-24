@@ -1,0 +1,50 @@
+{{- if and .Values.rbac.enabled (not (lookup "rbac.authorization.k8s.io/v1" "ClusterRoleBinding" "" "hp-ams-cluster-admin")) }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hp-ams-cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.serviceAccount.name }}
+    namespace: {{ .Values.daemonSet.namespace }}
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
+
+---
+
+{{- if and .Values.rbac.enabled (not (lookup "rbac.authorization.k8s.io/v1" "RoleBinding" .Values.daemonSet.namespace "bind-hostpath")) }}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: bind-hostpath
+  namespace: {{ .Values.daemonSet.namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.serviceAccount.name }}
+    namespace: {{ .Values.daemonSet.namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'system:openshift:scc:privileged'
+{{- end }}
+
+---
+
+{{- if and .Values.rbac.enabled (not (lookup "security.openshift.io/v1" "SecurityContextConstraints" "" "allow-hostpath")) }}
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: allow-hostpath
+allowHostDirVolumePlugin: true
+volumes:
+  - hostPath
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+fsGroup:
+  type: RunAsAny
+{{- end }}
