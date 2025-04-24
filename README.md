@@ -105,7 +105,7 @@ helm install hp-ams . --dry-run --debug
 ```
 quay.io/fernando_taboada/hp_ams
 ```
-### However, if you prefer to build your own image, you can use the following **Containerfile**:
+### However, if you prefer to build your own image, you can use the following Containerfile and upload it to your preferred repository:
 
 ```FROM registry.access.redhat.com/ubi9/ubi:latest
 
