@@ -1,16 +1,14 @@
-# hp-ams
+# hp-ams Helm Chart
 
-This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or any k8 cluster that is running over an HPE iLO 6 baremetal infrastructure using a `DaemonSet`. This chart includes required configurations for RBAC, SecurityContextConstraints (SCC), and other customizations.
-It is also included the instructions to build your own container image of this software.
+This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or any Kubernetes cluster that is running over an HPE iLO 6 baremetal infrastructure using a `DaemonSet`. This chart includes required configurations for RBAC, SecurityContextConstraints (SCC), and other customizations.
 
----
 ## 📌 Requirements
 
-- OpenShift 4.14
+- OpenShift 4.14 (or Kub)
 - HPE iLO 6
 - Helm 3+
 - Proper permissions to create `DaemonSets`, `ServiceAccounts`, `ClusterRoleBindings`, and `SecurityContextConstraints` (SCC in OpenShift)
-- Podman installed on your computer (you can use Docker too, but in this example we use Podman)
+
 ---
 
 ## 🚀 Installation
@@ -18,7 +16,7 @@ It is also included the instructions to build your own container image of this s
 ### **1️⃣ Download the Chart from GitHub**
 Clone the repository where the Helm Chart is hosted:
 ```sh
-git clone https://github.com/fertab/hp-ams.git
+git clone https://repo-git/path-to-repo/hp-ams.git
 cd hp-ams
 ```
 
@@ -100,70 +98,9 @@ helm install hp-ams . --dry-run --debug
 ```
 
 ---
-## 🐳 Containerfile (Dockerfile)
 
-#### You can build your own image using the following Containerfile and upload it to your preferred repository:
-
-```
-FROM registry.access.redhat.com/ubi9/ubi:latest
-
-ENV AMS_VERSION=3.8.0-1869.3
-ENV AMS_RPM_URL=https://downloads.linux.hpe.com/SDR/repo/spp-gen11/2025.01.00.00/packages/amsd-${AMS_VERSION}.rhel9.x86_64.rpm
-
-# Install required dependencies
-RUN yum install -y \
-    glibc \
-    bash \
-    coreutils \
-    libstdc++ \
-    systemd \
-    pciutils \
-    lsof \
-    curl \
-    rpm-libs \
-    rpm --allowerasing && \
-    yum clean all
-
-# Download and install AMSD
-RUN curl -fLo /tmp/amsd.rpm ${AMS_RPM_URL} && \
-    rpm -Uvh /tmp/amsd.rpm && \
-    rm -f /tmp/amsd.rpm
-
-# Create a systemd service for AMSD
-RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Service]\nExecStart=/sbin/amsd\nRestart=always\nType=simple\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/amsd.service
-
-# Start systemd as the default process
-CMD ["/usr/sbin/init"]
-```
-
-#### Then follow the next steps in your cli in order to build the container and push it to your repo (This example use quay.io as the main repository)
-
-```
-podman login quay.io
-```
-```
-username: your_username
-```
-```
-password: your_password
-```
-##### In this case the version used for the software is 3.8.0-1869.4
-```
-export AMS_VERSION=3.8.0-1869.4
-```
-```
-podman build -t hp-ams:${AMS_VERSION} -f HP-AMS.containerfile .
-```
-```
-podman tag hp-ams:${AMS_VERSION} quay.io/your_repo/hp_asm:${AMS_VERSION}
-```
-```
-podman push quay.io/your_repo/hp_asm:${AMS_VERSION}
-```
----
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
-- [Podman Documentation](https://podman.io/docs/installation)
 
 ---
 
