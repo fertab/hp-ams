@@ -1,5 +1,5 @@
 image:
-  repository: quay.io/fernando_taboada/hp_asm
+  repository: quay.io/your_repo/hp_asm
   tag: 3.8.0-1869.4
   pullPolicy: IfNotPresent
 

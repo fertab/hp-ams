@@ -149,7 +149,7 @@ username: your_username
 ```
 password: your_password
 ```
-### In this case the version used is 3.8.0-1869.3
+#### In this case the version used is 3.8.0-1869.4
 ```
 export AMS_VERSION=3.8.0-1869.3
 ```
