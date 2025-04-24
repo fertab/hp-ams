@@ -131,16 +131,17 @@ RUN curl -fLo /tmp/amsd.rpm ${AMS_RPM_URL} && \
 RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Service]\nExecStart=/sbin/amsd\nRestart=always\nType=simple\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/amsd.service
 
 # Start systemd as the default process
-CMD ["/usr/sbin/init"]```
+CMD ["/usr/sbin/init"]
+```
 
 ---
 
 # Build the Image
 
 ## To build the image for this container, use the following command:
-
+```
 docker build -t hp-ams:latest .
-
+```
 ---
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
