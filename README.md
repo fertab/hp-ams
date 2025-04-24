@@ -138,7 +138,7 @@ RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Servic
 CMD ["/usr/sbin/init"]
 ```
 
-#### Then follow the next steps in your cli (This example use quay.io as the main repository)
+#### Then follow the next steps in your cli in order to build the container and push it to your repo (This example use quay.io as the main repository)
 
 ```
 podman login quay.io
@@ -149,7 +149,7 @@ username: your_username
 ```
 password: your_password
 ```
-##### In this case the version used is 3.8.0-1869.4
+##### In this case the version used for the software is 3.8.0-1869.4
 ```
 export AMS_VERSION=3.8.0-1869.4
 ```
