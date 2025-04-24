@@ -101,7 +101,11 @@ helm install hp-ams . --dry-run --debug
 ---
 # 🐳 Containerfile (Dockerfile)
 
-## To build the HP AMS container image, we use the following Containerfile:
+## The **HP AMS** container image is available for download from **quay.io** at the following repository:
+```
+quay.io/fernando_taboada/hp_ams
+```
+## However, if you prefer to build your own image, you can use the following **Containerfile**:
 
 ```FROM registry.access.redhat.com/ubi9/ubi:latest
 
@@ -134,13 +138,17 @@ RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Servic
 CMD ["/usr/sbin/init"]
 ```
 
----
+## Then follow the next steps (This example use quay.io as the repository)
 
-# Build the Image
-
-## To build the image for this container, use the following command:
 ```
-docker build -t hp-ams:latest .
+# podman login quay.io
+# username: your_username
+# password: your_password
+
+# export AMS_VERSION=3.8.0-1869.3
+# podman build -t hp-ams:${AMS_VERSION} -f HP-AMS.containerfile .
+# podman tag hp-ams:${AMS_VERSION} quay.io/your_repo/hp_asm:${AMS_VERSION}
+# podman push quay.io/your_repo/hp_asm:${AMS_VERSION}
 ```
 ---
 ## 📖 References
