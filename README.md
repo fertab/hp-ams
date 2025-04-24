@@ -138,7 +138,7 @@ RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Servic
 CMD ["/usr/sbin/init"]
 ```
 
-## Then follow the next steps in your cli ***(This example use quay.io as the repository)***
+## Then follow the next steps in your cli ### ***(This example use quay.io as the repository)***
 
 ```
 # podman login quay.io
