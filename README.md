@@ -2,8 +2,10 @@
 
 This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or any k8 cluster that is running over an HPE iLO 6 baremetal infrastructure using a `DaemonSet`. This chart includes required configurations for RBAC, SecurityContextConstraints (SCC), and other customizations.
 
-### It is also important to know that the container image must be built (Instructions at the end)
-
+---
+#### It is also important to know that the container image must be built (Instructions at the end)
+---
+---
 ## 📌 Requirements
 
 - Access to a Bastion node if it's necessary
