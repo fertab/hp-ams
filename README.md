@@ -4,7 +4,7 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or a
 
 ## 📌 Requirements
 
-- Access to Bastion node
+- Access to a Bastion node if it's neccesary
 - OpenShift 4.14
 - HPE iLO 6
 - Helm 3+
@@ -99,7 +99,49 @@ helm install hp-ams . --dry-run --debug
 ```
 
 ---
+# 🐳 Containerfile (Dockerfile)
 
+## To build the HP AMS container image, we use the following Containerfile:
+
+FROM registry.access.redhat.com/ubi9/ubi:latest
+
+ENV AMS_VERSION=3.8.0-1869.3
+ENV AMS_RPM_URL=https://downloads.linux.hpe.com/SDR/repo/spp-gen11/2025.01.00.00/packages/amsd-${AMS_VERSION}.rhel9.x86_64.rpm
+
+# Install required dependencies
+RUN yum install -y \
+    glibc \
+    bash \
+    coreutils \
+    libstdc++ \
+    systemd \
+    pciutils \
+    lsof \
+    curl \
+    rpm-libs \
+    rpm --allowerasing && \
+    yum clean all
+
+# Download and install AMSD
+RUN curl -fLo /tmp/amsd.rpm ${AMS_RPM_URL} && \
+    rpm -Uvh /tmp/amsd.rpm && \
+    rm -f /tmp/amsd.rpm
+
+# Create a systemd service for AMSD
+RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Service]\nExecStart=/sbin/amsd\nRestart=always\nType=simple\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/amsd.service
+
+# Start systemd as the default process
+CMD ["/usr/sbin/init"]
+
+---
+
+# Build the Image
+
+## To build the image for this container, use the following command:
+
+docker build -t hp-ams:latest .
+
+---
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
 
