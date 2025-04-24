@@ -103,7 +103,7 @@ helm install hp-ams . --dry-run --debug
 
 ## To build the HP AMS container image, we use the following Containerfile:
 
-FROM registry.access.redhat.com/ubi9/ubi:latest
+```FROM registry.access.redhat.com/ubi9/ubi:latest
 
 ENV AMS_VERSION=3.8.0-1869.3
 ENV AMS_RPM_URL=https://downloads.linux.hpe.com/SDR/repo/spp-gen11/2025.01.00.00/packages/amsd-${AMS_VERSION}.rhel9.x86_64.rpm
@@ -131,7 +131,7 @@ RUN curl -fLo /tmp/amsd.rpm ${AMS_RPM_URL} && \
 RUN echo -e "[Unit]\nDescription=HPE AMS Daemon\nAfter=network.target\n\n[Service]\nExecStart=/sbin/amsd\nRestart=always\nType=simple\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/amsd.service
 
 # Start systemd as the default process
-CMD ["/usr/sbin/init"]
+CMD ["/usr/sbin/init"]```
 
 ---
 
