@@ -4,7 +4,7 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or a
 
 ## 📌 Requirements
 
-- Access to a Bastion node if it's neccesary
+- Access to a Bastion node if it's necessary
 - OpenShift 4.14
 - HPE iLO 6
 - Helm 3+
