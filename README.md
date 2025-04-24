@@ -141,14 +141,25 @@ CMD ["/usr/sbin/init"]
 ### Then follow the next steps in your cli (This example use quay.io as the main repository)
 
 ```
-# podman login quay.io
-# username: your_username
-# password: your_password
-
-# export AMS_VERSION=3.8.0-1869.3
-# podman build -t hp-ams:${AMS_VERSION} -f HP-AMS.containerfile .
-# podman tag hp-ams:${AMS_VERSION} quay.io/your_repo/hp_asm:${AMS_VERSION}
-# podman push quay.io/your_repo/hp_asm:${AMS_VERSION}
+podman login quay.io
+```
+```
+username: your_username
+```
+```
+password: your_password
+```
+```
+export AMS_VERSION=3.8.0-1869.3
+```
+```
+podman build -t hp-ams:${AMS_VERSION} -f HP-AMS.containerfile .
+```
+```
+podman tag hp-ams:${AMS_VERSION} quay.io/your_repo/hp_asm:${AMS_VERSION}
+```
+```
+podman push quay.io/your_repo/hp_asm:${AMS_VERSION}
 ```
 ---
 ## 📖 References
