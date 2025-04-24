@@ -17,7 +17,7 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or a
 ### **1️⃣ Download the Chart from GitHub**
 Clone the repository where the Helm Chart is hosted:
 ```sh
-git clone https://repo-git/path-to-repo/hp-ams.git (replace 'repo-git/path-to-repo/' with the right path)
+git clone https://github.com/fertab/hp-ams.git
 cd hp-ams
 ```
 
