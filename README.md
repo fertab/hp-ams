@@ -101,11 +101,11 @@ helm install hp-ams . --dry-run --debug
 ---
 ## 🐳 Containerfile (Dockerfile)
 
-### The **HP AMS** container image is available for download from **quay.io** at the following repository:
+#### The **HP AMS** container image is available for download from **quay.io** at the following repository:
 ```
 quay.io/fernando_taboada/hp_ams
 ```
-### However, if you prefer to build your own image, you can use the following Containerfile and upload it to your preferred repository:
+#### However, if you prefer to build your own image, you can use the following Containerfile and upload it to your preferred repository:
 
 ```FROM registry.access.redhat.com/ubi9/ubi:latest
 
