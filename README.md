@@ -103,7 +103,8 @@ helm install hp-ams . --dry-run --debug
 
 #### You can build your own image using the following Containerfile and upload it to your preferred repository:
 
-```FROM registry.access.redhat.com/ubi9/ubi:latest
+```
+FROM registry.access.redhat.com/ubi9/ubi:latest
 
 ENV AMS_VERSION=3.8.0-1869.3
 ENV AMS_RPM_URL=https://downloads.linux.hpe.com/SDR/repo/spp-gen11/2025.01.00.00/packages/amsd-${AMS_VERSION}.rhel9.x86_64.rpm
