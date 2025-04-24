@@ -5,7 +5,6 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or a
 ---
 #### It is also important to know that the container image must be built (Instructions at the end)
 ---
----
 ## 📌 Requirements
 
 - Access to a Bastion node if it's necessary
@@ -13,7 +12,7 @@ This is a Helm Chart for deploying `hp-ams` in an Openshift cluster (v4.14) or a
 - HPE iLO 6
 - Helm 3+
 - Proper permissions to create `DaemonSets`, `ServiceAccounts`, `ClusterRoleBindings`, and `SecurityContextConstraints` (SCC in OpenShift)
-
+- Podman installed on your computer (you can use Docker too, but in this example we use Podman)
 ---
 
 ## 🚀 Installation
@@ -166,6 +165,7 @@ podman push quay.io/your_repo/hp_asm:${AMS_VERSION}
 ---
 ## 📖 References
 - [Helm Documentation](https://helm.sh/docs/)
+- [Podman Documentation](https://podman.io/docs/installation)
 
 ---
 
