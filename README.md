@@ -6,7 +6,6 @@ It is also included the instructions to build your own container image of this s
 ---
 ## 📌 Requirements
 
-- Access to a Bastion node if it's necessary
 - OpenShift 4.14
 - HPE iLO 6
 - Helm 3+
